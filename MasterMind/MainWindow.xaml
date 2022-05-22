@@ -1,0 +1,238 @@
+﻿<Window x:Class="MasterMind.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterMind"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="Mastermind.png" Opacity="0.575" />
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5px"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="21" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="FocusVisual1">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background1" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border1" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background1" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border1" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background1" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border1" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background1" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border1" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground1" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual1}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background1}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border1}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Margin" Value="5px"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background1}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border1}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background1}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border1}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background1}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border1}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground1}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="40" />
+
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50"/>
+
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <!--Game buttons-->
+        <Button x:Name="button00"  Grid.Column="1" Grid.Row="1" Click="Button_Click"  ></Button>
+        <Button x:Name="button01"  Grid.Column="2" Grid.Row="1" Click="Button_Click"  ></Button>
+        <Button x:Name="button02"  Grid.Column="3" Grid.Row="1" Click="Button_Click"  ></Button>
+        <Button x:Name="button03"  Grid.Column="4" Grid.Row="1" Click="Button_Click"  ></Button>
+        <Button x:Name="button10"  Grid.Column="1" Grid.Row="2" Click="Button_Click"  />
+        <Button x:Name="button11"  Grid.Column="2" Grid.Row="2" Click="Button_Click"  ></Button>
+        <Button x:Name="button12"  Grid.Column="3" Grid.Row="2" Click="Button_Click"  ></Button>
+        <Button x:Name="button13"  Grid.Column="4" Grid.Row="2" Click="Button_Click"  ></Button>
+        <Button x:Name="button20"  Grid.Column="1" Grid.Row="3" Click="Button_Click"  ></Button>
+        <Button x:Name="button21"  Grid.Column="2" Grid.Row="3" Click="Button_Click"  ></Button>
+        <Button x:Name="button22"  Grid.Column="3" Grid.Row="3" Click="Button_Click"  ></Button>
+        <Button x:Name="button23"  Grid.Column="4" Grid.Row="3" Click="Button_Click"  ></Button>
+        <Button x:Name="button30"  Grid.Column="1" Grid.Row="4" Click="Button_Click"  ></Button>
+        <Button x:Name="button31"  Grid.Column="2" Grid.Row="4" Click="Button_Click"  ></Button>
+        <Button x:Name="button32"  Grid.Column="3" Grid.Row="4" Click="Button_Click"  ></Button>
+        <Button x:Name="button33"  Grid.Column="4" Grid.Row="4" Click="Button_Click"  ></Button>
+        <Button x:Name="button40"  Grid.Column="1" Grid.Row="5" Click="Button_Click"  ></Button>
+        <Button x:Name="button41"  Grid.Column="2" Grid.Row="5" Click="Button_Click"  ></Button>
+        <Button x:Name="button42"  Grid.Column="3" Grid.Row="5" Click="Button_Click"  ></Button>
+        <Button x:Name="button43"  Grid.Column="4" Grid.Row="5" Click="Button_Click"  ></Button>
+        <Button x:Name="button50"  Grid.Column="1" Grid.Row="6" Click="Button_Click"  ></Button>
+        <Button x:Name="button51"  Grid.Column="2" Grid.Row="6" Click="Button_Click"  ></Button>
+        <Button x:Name="button52"  Grid.Column="3" Grid.Row="6" Click="Button_Click"  ></Button>
+        <Button x:Name="button53"  Grid.Column="4" Grid.Row="6" Click="Button_Click"  ></Button>
+        <Button x:Name="button60"  Grid.Column="1" Grid.Row="7" Click="Button_Click"  ></Button>
+        <Button x:Name="button61"  Grid.Column="2" Grid.Row="7" Click="Button_Click"  ></Button>
+        <Button x:Name="button62"  Grid.Column="3" Grid.Row="7" Click="Button_Click"  ></Button>
+        <Button x:Name="button63"  Grid.Column="4" Grid.Row="7" Click="Button_Click"  ></Button>
+        <Button x:Name="button70"  Grid.Column="1" Grid.Row="8" Click="Button_Click"  ></Button>
+        <Button x:Name="button71"  Grid.Column="2" Grid.Row="8" Click="Button_Click"  ></Button>
+        <Button x:Name="button72"  Grid.Column="3" Grid.Row="8" Click="Button_Click"  ></Button>
+        <Button x:Name="button73"  Grid.Column="4" Grid.Row="8" Click="Button_Click"  ></Button>
+        <!--Select color-->
+        <Button x:Name="redButton"  Grid.Column="1" Grid.Row="10" Background="Red" Click="RedButton_Click" ></Button>
+        <Button x:Name="greenButton"  Grid.Column="2" Grid.Row="10" Background="Green" Click="GreenButton_Click" ></Button>
+        <Button x:Name="blueButton"  Grid.Column="3" Grid.Row="10" Background="Blue" Click="BlueButton_Click" ></Button>
+        <Button x:Name="whiteButton"  Grid.Column="4" Grid.Row="10" Background="Gray" Click="WhiteButton_Click" ></Button>
+        <Button x:Name="blackButton"  Grid.Column="1" Grid.Row="11" Background="Black" Click="BlackButton_Click" ></Button>
+        <Button x:Name="yellowButton"  Grid.Column="2" Grid.Row="11" Background="Yellow" Click="YellowButton_Click" ></Button>
+        <Button x:Name="orangeButton"  Grid.Column="3" Grid.Row="11" Background="Orange" Click="OrangeButton_Click" ></Button>
+        <Button x:Name="purpleButton"  Grid.Column="4" Grid.Row="11" Background="Purple" Click="PurpleButton_Click" ></Button>
+        <!--Pins-->
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin00Button" Height="20" Width="20"   Grid.Column="5" Grid.Row="1"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin01Button" Height="20" Width="20"   Grid.Column="6" Grid.Row="1"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin02Button" Height="20" Width="20"   Grid.Column="7" Grid.Row="1"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin03Button" Height="20" Width="20"   Grid.Column="8" Grid.Row="1"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin10Button" Height="20" Width="20"   Grid.Column="5" Grid.Row="2"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin11Button" Height="20" Width="20"   Grid.Column="6" Grid.Row="2"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin12Button" Height="20" Width="20"   Grid.Column="7" Grid.Row="2"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin13Button" Height="20" Width="20"   Grid.Column="8" Grid.Row="2"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin20Button" Height="20" Width="20"   Grid.Column="5" Grid.Row="3"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin21Button" Height="20" Width="20"   Grid.Column="6" Grid.Row="3"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin22Button" Height="20" Width="20"   Grid.Column="7" Grid.Row="3"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin23Button" Height="20" Width="20"   Grid.Column="8" Grid.Row="3"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin30Button" Height="20" Width="20"   Grid.Column="5" Grid.Row="4"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin31Button" Height="20" Width="20"   Grid.Column="6" Grid.Row="4"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin32Button" Height="20" Width="20"   Grid.Column="7" Grid.Row="4"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin33Button" Height="20" Width="20"   Grid.Column="8" Grid.Row="4"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin40Button" Height="20" Width="20"   Grid.Column="5" Grid.Row="5"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin41Button" Height="20" Width="20"   Grid.Column="6" Grid.Row="5"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin42Button" Height="20" Width="20"   Grid.Column="7" Grid.Row="5"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin43Button" Height="20" Width="20"   Grid.Column="8" Grid.Row="5"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin50Button" Height="20" Width="20"   Grid.Column="5" Grid.Row="6"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin51Button" Height="20" Width="20"   Grid.Column="6" Grid.Row="6"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin52Button" Height="20" Width="20"   Grid.Column="7" Grid.Row="6"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin53Button" Height="20" Width="20"   Grid.Column="8" Grid.Row="6"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin60Button" Height="20" Width="20"   Grid.Column="5" Grid.Row="7"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin61Button" Height="20" Width="20"   Grid.Column="6" Grid.Row="7"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin62Button" Height="20" Width="20"   Grid.Column="7" Grid.Row="7"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin63Button" Height="20" Width="20"   Grid.Column="8" Grid.Row="7"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin70Button" Height="20" Width="20"   Grid.Column="5" Grid.Row="8"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin71Button" Height="20" Width="20"   Grid.Column="6" Grid.Row="8"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin72Button" Height="20" Width="20"   Grid.Column="7" Grid.Row="8"></Button>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Pin73Button" Height="20" Width="20"   Grid.Column="8" Grid.Row="8"></Button>
+
+        <!--Check button-->
+        <Button Style="{DynamicResource ButtonStyle1}" Name="checkButton" Grid.Column="9"  Grid.Row="5" Background="#FFC8CE5C" Click="CheckButton_Click"  Height="40" Width="120"   ContentStringFormat="" FontSize="20">Check</Button>
+    </Grid>
+</Window>
